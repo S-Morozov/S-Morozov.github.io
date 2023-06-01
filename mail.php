@@ -3,32 +3,16 @@
   $email = $_POST['email'];
   $message = $_POST['message'];
   $subject = $_POST['subject'];
-  header('Content-Type: application/json');
-  if ($name === '') {
-    echo json_encode(array('message' => 'Name cannot be empty', 'code' => 0));
-    exit();
-  }
-  if ($email === '') {
-    echo json_encode(array('message' => 'Email cannot be empty', 'code' => 0));
-    exit();
-  } else {
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      echo json_encode(array('message' => 'Email format invalid.', 'code' => 0));
-      exit();
+
+    $to = 'semenmorozov24@gmail.com';
+
+    $txt = "Name = ". $name . "\r\n Email = " . $email . "\r\n Message = " . $message . "\r\n subject =" . $subject;
+
+    $headers = "From: noreply@codeconia.com" . "\r\n" .
+    "CC: somebodyelse@example.com";
+    if($email !=NULL) {
+        mail($to, $subject, $txt, $headers);
     }
-  }
-  if ($subject === '') {
-    echo json_encode(array('message' => 'Subject cannot be empty', 'code' => 0));
-    exit();
-  }
-  if ($message === '') {
-    echo json_encode(array('message' => 'Message cannot be empty', 'code' => 0));
-    exit();
-  }
-  $content = "From: $name \nEmail: $email \nMessage: $message";
-  $recipient = "semenmorozov24@gmail.com";
-  $mailheader = "From: $email \r\n";
-  mail($recipient, $subject, $content, $mailheader) or die("Error!");
-  echo json_encode(array('message' => 'Email successfully sent!', 'code' => 1));
-  header("Location: thankyoumail.html");
+
+    header('Location: thankyoumail.html');
 ?>
