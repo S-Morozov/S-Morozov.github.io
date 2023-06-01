@@ -85,10 +85,16 @@ function sendEmail(event) {
     let subject = document.getElementById('subject').value;
     let message = document.getElementById('message').value;
 
+    // Create a FormData object
+    let formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('subject', subject);
+    formData.append('message', message);
+
     // Create an XMLHttpRequest object
     let xhr = new XMLHttpRequest();
     xhr.open('POST', 'mail.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     // Set up the callback function
     xhr.onreadystatechange = function() {
@@ -103,13 +109,8 @@ function sendEmail(event) {
         }
     };
 
-    // Prepare the form data
-    let formData = 'name=' + encodeURIComponent(name) +
-        '&email=' + encodeURIComponent(email) +
-        '&subject=' + encodeURIComponent(subject) +
-        '&message=' + encodeURIComponent(message);
-
-    // Send the request
+    // Send the request with the form data
     xhr.send(formData);
 }
+
 
