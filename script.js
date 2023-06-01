@@ -76,41 +76,24 @@ $(document).ready(function(){
 
 // form submit
 
-function sendEmail(event) {
-    event.preventDefault(); // Prevent the form from submitting
-
-    // Get the form fields
-    let name = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let subject = document.getElementById('subject').value;
-    let message = document.getElementById('message').value;
-
-    // Create a FormData object
-    let formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('subject', subject);
-    formData.append('message', message);
-
-    // Create an XMLHttpRequest object
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'mail.php', true);
-
-    // Set up the callback function
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                // Email sent successfully
-                window.location.href = 'thankyoumail.html'; // Redirect to the thank you page
-            } else {
-                // Failed to send email
-                console.error('An error occurred while sending the email.');
-            }
-        }
+function validateForm() {
+    let formData = {
+        'name': $('input[name=name]').val(),
+        'email': $('input[name=email]').val(),
+        'subject': $('input[name=subject]').val(),
+        'message': $('textarea[name=message]').val()
     };
 
-    // Send the request with the form data
-    xhr.send(formData);
+    $.ajax({
+        url: "mail.php",
+        type: "POST",
+        data: formData,
+        success: function (data) {
+            document.querySelector('.status').innerHTML = data.message;
+            if (data.code) //If mail was sent successfully, reset the form.
+                document.getElementById("contact-form").reset();
+        }});
 }
+
 
 
