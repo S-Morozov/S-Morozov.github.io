@@ -382,8 +382,13 @@ section .title::after{
 
 
 /*My projects styling*/
+.references{
+    background-color: whitesmoke;
+}
+
 .references .title::after{
     content: "who i am";
+    background-color: whitesmoke;
 }
 .references .references-content .left{
     width: 45%;
