@@ -412,7 +412,7 @@
                         </div>
                         <div class="button-area">
                             <a href="thankyou.html">
-                            <button type="submit" onclick="saveMessage();" id="btn">Send me a message</button>
+                            <button type="submit" id="btn">Send me a message</button>
                             </a>
                         </div>
                     </form>
@@ -444,13 +444,16 @@
      function sendEmail() {
 
      Email.send({
-         Host : "smtp.gmail.com",
+         Host : "smtp.elasticemail.com",
          Username : "semenmorozov24@gmail.com",
-         Password : "password",
+         Password : "5831B87F4E59D464E94BA255C683386CC274",
          To : 'semenmorozov24@gmail.com',
          From : document.getElementById("email").value,
          Subject : "New contact Form Enquiry",
-         Body : "And this is the body"
+         Body : "Name: " + document.getElementById("email").value
+         + "<br> Email: " + document.getElementById("name").value
+         + "<br> Subject: " + document.getElementById("subject").value
+             + "<br> Message: " + document.getElementById("message").value
      }).then(
          message => alert(message)
      );
