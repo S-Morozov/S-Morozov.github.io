@@ -392,9 +392,9 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-<!--                    <form onsubmit="sendEmail(event)" method="POST">-->
-                    <form id="contact-form" action="mail.php" method="post">
-<!--                        <input type="hidden" name="_next" value="https://s-morozov.github.io/thanksyoumail.html">-->
+                    <form onsubmit="sendEmail(); reset(); return false;">
+
+
 
                         <div class="fields">
                             <div class="field name">
@@ -412,7 +412,7 @@
                         </div>
                         <div class="button-area">
                             <a href="thankyou.html">
-                            <button type="submit" onclick="validateForm();" id="btn">Send me a message</button>
+                            <button type="submit" onclick="saveMessage();" id="btn">Send me a message</button>
                             </a>
                         </div>
                     </form>
@@ -434,13 +434,35 @@
                 </div>    
         </div>
 
-        <span>Created By Semen Morozov</a> | <span class="far fa-copyright"></span> 2023 All rights reserved.</span>
+        <span>Created By Semen Morozov | <span class="far fa-copyright"></span> 2023 All rights reserved.</span>
 
             </div>
     </footer>
+
+
+ <script>
+     function sendEmail() {
+
+     Email.send({
+         Host : "smtp.gmail.com",
+         Username : "semenmorozov24@gmail.com",
+         Password : "password",
+         To : 'semenmorozov24@gmail.com',
+         From : document.getElementById("email").value,
+         Subject : "New contact Form Enquiry",
+         Body : "And this is the body"
+     }).then(
+         message => alert(message)
+     );
+     }
+
+ </script>
     
 
 <script src="script.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+
 
 </body>
 </html>
