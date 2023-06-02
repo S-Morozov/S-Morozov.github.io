@@ -1,6 +1,3 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-
 $(document).ready(function(){
     $(window).scroll(function(){
         // sticky navbar on scroll script
