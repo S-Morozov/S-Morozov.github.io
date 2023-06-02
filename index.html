@@ -411,7 +411,7 @@
                             <textarea cols="30" id="message" rows="10" placeholder="Message.." required></textarea>
                         </div>
                         <div class="button-area">
-                            <a href="thankyou.html">
+                            <a href="thank-you.html">
                             <button type="submit" id="btn">Send me a message</button>
                             </a>
                         </div>
@@ -450,12 +450,12 @@
          To : 'semenmorozov24@gmail.com',
          From : document.getElementById("email").value,
          Subject : "New contact Form Enquiry",
-         Body : "Name: " + document.getElementById("email").value
-         + "<br> Email: " + document.getElementById("name").value
+         Body : "Name: " + document.getElementById("name").value
+         + "<br> Email: " + document.getElementById("email").value
          + "<br> Subject: " + document.getElementById("subject").value
-             + "<br> Message: " + document.getElementById("message").value
+             + "<br> Message: " + document.getElementById("message").value,
      }).then(
-         message => alert(message)
+         message => alert ("Message Sent Success")
      );
      }
 
@@ -465,6 +465,7 @@
 <script src="script.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 
+<!--    window.location.href='thank-you.html';-->
 
 
 </body>
